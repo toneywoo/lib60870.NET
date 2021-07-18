@@ -25,30 +25,30 @@ namespace cs104_server
 			connection.SendACT_CON (asdu, false);
 
 			// send information objects
-			ASDU newAsdu = new ASDU(cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, false);
+			//ASDU newAsdu = new ASDU(cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, false);
 
-			newAsdu.AddInformationObject (new MeasuredValueScaled (100, -1, new QualityDescriptor ()));
+			//newAsdu.AddInformationObject (new MeasuredValueScaled (100, -1, new QualityDescriptor ()));
 
-			newAsdu.AddInformationObject (new MeasuredValueScaled (101, 23, new QualityDescriptor ()));
+			//newAsdu.AddInformationObject (new MeasuredValueScaled (101, 23, new QualityDescriptor ()));
 
-			newAsdu.AddInformationObject (new MeasuredValueScaled (102, 2300, new QualityDescriptor ()));
+			//newAsdu.AddInformationObject (new MeasuredValueScaled (102, 2300, new QualityDescriptor ()));
 
-			connection.SendASDU (newAsdu);
+			//connection.SendASDU (newAsdu);
 
-			newAsdu = new ASDU (cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, false);
+			//newAsdu = new ASDU (cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, false);
 
-			newAsdu.AddInformationObject(new MeasuredValueScaledWithCP56Time2a(103, 3456, new QualityDescriptor (), new CP56Time2a(DateTime.Now)));
+			//newAsdu.AddInformationObject(new MeasuredValueScaledWithCP56Time2a(103, 3456, new QualityDescriptor (), new CP56Time2a(DateTime.Now)));
 
-			connection.SendASDU (newAsdu);
+			//connection.SendASDU (newAsdu);
 
-			newAsdu = new ASDU (cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, false);
+			//newAsdu = new ASDU (cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, false);
 
-			newAsdu.AddInformationObject (new SinglePointWithCP56Time2a (104, true, new QualityDescriptor (), new CP56Time2a (DateTime.Now)));
+			//newAsdu.AddInformationObject (new SinglePointWithCP56Time2a (104, true, new QualityDescriptor (), new CP56Time2a (DateTime.Now)));
 
-			connection.SendASDU (newAsdu);
+			//connection.SendASDU (newAsdu);
 
 			// send sequence of information objects
-			newAsdu = new ASDU (cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, true);
+			ASDU newAsdu = new ASDU (cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, true);
 
 			newAsdu.AddInformationObject (new SinglePointInformation (200, true, new QualityDescriptor ()));
 			newAsdu.AddInformationObject (new SinglePointInformation (201, false, new QualityDescriptor ()));
@@ -61,20 +61,20 @@ namespace cs104_server
 
 			connection.SendASDU (newAsdu);
 
-			newAsdu = new ASDU (cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, true);
+			//newAsdu = new ASDU (cp, CauseOfTransmission.INTERROGATED_BY_STATION, false, false, oa, 1, true);
 
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (300, -1.0f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (301, -0.5f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (302, -0.1f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (303, .0f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (304, 0.1f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (305, 0.2f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (306, 0.5f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (307, 0.7f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (308, 0.99f));
-			newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (309, 1f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (300, -1.0f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (301, -0.5f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (302, -0.1f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (303, .0f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (304, 0.1f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (305, 0.2f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (306, 0.5f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (307, 0.7f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (308, 0.99f));
+			//newAsdu.AddInformationObject (new MeasuredValueNormalizedWithoutQuality (309, 1f));
 
-			connection.SendASDU (newAsdu);
+			//connection.SendASDU (newAsdu);
 
 			connection.SendACT_TERM (asdu);
 
@@ -141,7 +141,7 @@ namespace cs104_server
 
 			server.DebugOutput = true;
 
-			server.MaxQueueSize = 10;
+			server.MaxQueueSize = 6;
             server.EnqueueMode = EnqueueMode.REMOVE_OLDEST;
 
 			server.SetInterrogationHandler (interrogationHandler, null);

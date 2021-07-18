@@ -21,12 +21,12 @@ namespace cs104_server2
 		public static void Main (string[] args)
 		{
 			/* Initialize data objects */
-			for (int i = 0; i < 400; i++)
+			for (int i = 0; i < 7; i++)
 				spiObjects [i] = new SinglePointInformation (1000 + i, true, new QualityDescriptor ());
 
-			for (int i = 0; i < 100; i++)
-				stepPositionObjects [i] = new StepPositionWithCP56Time2a (10000 + i, 0, false, 
-					new QualityDescriptor (), new CP56Time2a ());
+			//for (int i = 0; i < 100; i++)
+			//	stepPositionObjects [i] = new StepPositionWithCP56Time2a (10000 + i, 0, false, 
+			//		new QualityDescriptor (), new CP56Time2a ());
 
 
 			bool running = true;
@@ -52,44 +52,44 @@ namespace cs104_server2
 					waitTime -= 100;
 				else {
 
-					ASDU newAsdu = null; 
+					//ASDU newAsdu = null; 
 
-					/* send SPI objects */
-					for (int i = 0; i < 400; i++) {
-						spiObjects [i].Value = !(spiObjects [i].Value);
+					///* send SPI objects */
+					//for (int i = 0; i < 7; i++) {
+					//	spiObjects [i].Value = !(spiObjects [i].Value);
 
-						if (newAsdu == null)
-							newAsdu = new ASDU (server.GetApplicationLayerParameters(), CauseOfTransmission.PERIODIC, false, false, 1, 1, false);
+					//	if (newAsdu == null)
+					//		newAsdu = new ASDU (server.GetApplicationLayerParameters(), CauseOfTransmission.PERIODIC, false, false, 1, 1, false);
 
-						if (newAsdu.AddInformationObject (spiObjects [i]) == false) {
-							server.EnqueueASDU (newAsdu);
-							newAsdu = null;
-							i--;
-						}
-					}
+					//	if (newAsdu.AddInformationObject (spiObjects [i]) == false) {
+					//		server.EnqueueASDU (newAsdu);
+					//		newAsdu = null;
+					//		i--;
+					//	}
+					//}
 
-					if (newAsdu != null)
-						server.EnqueueASDU (newAsdu);
+					//if (newAsdu != null)
+					//	server.EnqueueASDU (newAsdu);
 
-					/* send step position objects */
-					newAsdu = null;
+					///* send step position objects */
+					//newAsdu = null;
 
-					for (int i = 0; i < 100; i++) {
+					//for (int i = 0; i < 100; i++) {
 
-						stepPositionObjects [i].Value = (stepPositionObjects [i].Value + 1) % 63;
+					//	stepPositionObjects [i].Value = (stepPositionObjects [i].Value + 1) % 63;
 
-						if (newAsdu == null)
-							newAsdu = new ASDU (server.GetApplicationLayerParameters (), CauseOfTransmission.PERIODIC, false, false, 1, 1, false);
+					//	if (newAsdu == null)
+					//		newAsdu = new ASDU (server.GetApplicationLayerParameters (), CauseOfTransmission.PERIODIC, false, false, 1, 1, false);
 
-						if (newAsdu.AddInformationObject (stepPositionObjects [i]) == false) {
-							server.EnqueueASDU (newAsdu);
-							newAsdu = null;
-							i--;
-						}
-					}
+					//	if (newAsdu.AddInformationObject (stepPositionObjects [i]) == false) {
+					//		server.EnqueueASDU (newAsdu);
+					//		newAsdu = null;
+					//		i--;
+					//	}
+					//}
 
-					if (newAsdu != null)
-						server.EnqueueASDU (newAsdu);
+					//if (newAsdu != null)
+					//	server.EnqueueASDU (newAsdu);
 
 					waitTime = 1000;
 				}
